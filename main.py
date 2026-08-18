@@ -1,11 +1,13 @@
-# Website: https://fsymbols.com/box-drawing/
-# Utilizado para crear bordes y marcos limpios en la consola.
-
+# Referencia de caracteres ASCII y formateo
 from menu import (
     mostrar_menu,
-    opcion_cargar_archivos,
-    opcion_procesar_tableros,
-    opcion_procesar_intentos
+    opcion_cargar_sudokus,
+    opcion_cargar_jugadores,
+    opcion_cargar_intentos,
+    opcion_validar_intentos,
+    opcion_reporte_1,
+    opcion_reporte_2,
+    opcion_reporte_3
 )
 
 def main():
@@ -22,15 +24,21 @@ def main():
             continue
 
         if opcion == 1:
-            tableros, jugadores, intentos = opcion_cargar_archivos()
+            tableros = opcion_cargar_sudokus(tableros)
         elif opcion == 2:
-            opcion_procesar_tableros(tableros)
+            jugadores = opcion_cargar_jugadores(jugadores)
         elif opcion == 3:
-            opcion_procesar_intentos(intentos, tableros)
+            intentos = opcion_cargar_intentos(intentos)
         elif opcion == 4:
-            print("\nOpción 4: Generar Reportes (En desarrollo)")
+            opcion_validar_intentos(intentos, tableros)
         elif opcion == 5:
-            print("\n¡Gracias por usar Numerix! Saliendo...")
+            opcion_reporte_1(tableros, intentos)
+        elif opcion == 6:
+            opcion_reporte_2(jugadores, intentos)
+        elif opcion == 7:
+            opcion_reporte_3(jugadores, tableros, intentos)
+        elif opcion == 8:
+            print("\n¡Gracias por usar LFP Numerix! Saliendo...")
             break
         else:
             print("[!] Opción inválida, intente nuevamente.")
