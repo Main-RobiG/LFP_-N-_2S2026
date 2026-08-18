@@ -1,15 +1,12 @@
-from carga_lfp import cargar_tableros, cargar_jugadores, cargar_intentos
+# Website: https://fsymbols.com/box-drawing/
+# Utilizado para crear bordes y marcos limpios en la consola.
 
-def mostrar_menu():
-    print("\n┌─────────────────────────────────────────┐")
-    print("│       TORNEO DE SUDOKU - NUMERIX        │")
-    print("├─────────────────────────────────────────┤")
-    print("│  1. Cargar Archivos (.lfp)              │")
-    print("│  2. Procesar Tableros                   │")
-    print("│  3. Procesar Intentos                   │")
-    print("│  4. Generar Reportes                    │")
-    print("│  5. Salir                               │")
-    print("└─────────────────────────────────────────┘")
+from menu import (
+    mostrar_menu,
+    opcion_cargar_archivos,
+    opcion_procesar_tableros,
+    opcion_procesar_intentos
+)
 
 def main():
     tableros = []
@@ -25,14 +22,11 @@ def main():
             continue
 
         if opcion == 1:
-            print("\n--- Cargando Archivos LFP ---")
-            tableros = cargar_tableros("archivos/tableros.lfp")
-            jugadores = cargar_jugadores("archivos/jugadores.lfp")
-            intentos = cargar_intentos("archivos/intentos.lfp")
+            tableros, jugadores, intentos = opcion_cargar_archivos()
         elif opcion == 2:
-            print("\nOpción 2: Procesar Tableros (En desarrollo)")
+            opcion_procesar_tableros(tableros)
         elif opcion == 3:
-            print("\nOpción 3: Procesar Intentos (En desarrollo)")
+            opcion_procesar_intentos(intentos, tableros)
         elif opcion == 4:
             print("\nOpción 4: Generar Reportes (En desarrollo)")
         elif opcion == 5:
