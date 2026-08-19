@@ -10,6 +10,7 @@ from menu import (
     opcion_reporte_3
 )
 
+
 def main():
     tableros = []
     jugadores = []
@@ -42,6 +43,7 @@ def main():
             break
         else:
             print("[!] Opción inválida, intente nuevamente.")
+
 
 if __name__ == "__main__":
     main()

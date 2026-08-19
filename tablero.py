@@ -1,9 +1,11 @@
 class Tablero:
-    def __init__(self, id_Sudoku, dificultad, cadena_Tablero):
-        self.id_Sudoku = id_Sudoku
+    """Representa un tablero de Sudoku cargado desde sudokus.lfp."""
+
+    def __init__(self, id_sudoku, dificultad, cadena_tablero):
+        self.id_sudoku = id_sudoku
         self.dificultad = dificultad
-        self.cadena_Tablero = cadena_Tablero
+        self.cadena_tablero = cadena_tablero
         self.matriz = []
 
     def mostrar_info(self):
-        print(f"ID: {self.id_Sudoku} | Dificultad: {self.dificultad}")
+        print(f"ID: {self.id_sudoku} | Dificultad: {self.dificultad}")

@@ -1,12 +1,14 @@
 class Jugador:
-    def __init__(self, carnet, nombre, apellido, nivelDificultad):
+    """Representa a un jugador inscrito en el torneo."""
+
+    def __init__(self, carnet, nombre, apellido, nivel):
         self.carnet = carnet
         self.nombre = nombre
         self.apellido = apellido
-        self.nivelDificultad = nivelDificultad
+        self.nivel = nivel
 
     def obtener_nombre_completo(self):
         return f"{self.nombre} {self.apellido}"
 
     def mostrar_info(self):
-        print(f"Carnet: {self.carnet} | Nombre: {self.obtener_nombre_completo()} | Nivel: {self.nivelDificultad}")
+        print(f"Carnet: {self.carnet} | Nombre: {self.obtener_nombre_completo()} | Nivel: {self.nivel}")

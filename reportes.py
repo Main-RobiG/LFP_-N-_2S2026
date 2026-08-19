@@ -30,11 +30,11 @@ def generar_reporte_sudokus(tableros, intentos):
         <tbody>
 """
     for t in tableros:
-        intentos_sudoku = [i for i in intentos if i.id_Sudoku == t.id_Sudoku]
+        intentos_sudoku = [i for i in intentos if i.id_sudoku == t.id_sudoku]
         cant_intentos = len(intentos_sudoku)
-        
+
         if cant_intentos > 0:
-            tiempo_prom = sum(i.tiempo_Segundos for i in intentos_sudoku) / cant_intentos
+            tiempo_prom = sum(i.tiempo_segundos for i in intentos_sudoku) / cant_intentos
             correctos = sum(1 for i in intentos_sudoku if i.es_correcto)
             tasa_exito = (correctos / cant_intentos) * 100.0
         else:
@@ -42,7 +42,7 @@ def generar_reporte_sudokus(tableros, intentos):
             tasa_exito = 0.0
 
         contenido_html += f"""            <tr>
-                <td>{t.id_Sudoku}</td>
+                <td>{t.id_sudoku}</td>
                 <td>{t.dificultad}</td>
                 <td>{cant_intentos}</td>
                 <td>{tiempo_prom:.2f}</td>
@@ -96,7 +96,7 @@ def generar_reporte_jugadores(jugadores, intentos):
 
         if cant_intentos > 0:
             validez_prom = sum(i.porcentaje_validez for i in intentos_jugador) / cant_intentos
-            tiempo_prom = sum(i.tiempo_Segundos for i in intentos_jugador) / cant_intentos
+            tiempo_prom = sum(i.tiempo_segundos for i in intentos_jugador) / cant_intentos
             perfectos = sum(1 for i in intentos_jugador if i.es_correcto)
         else:
             validez_prom = 0.0
@@ -106,7 +106,7 @@ def generar_reporte_jugadores(jugadores, intentos):
         contenido_html += f"""            <tr>
                 <td>{j.carnet}</td>
                 <td>{j.obtener_nombre_completo()}</td>
-                <td>{j.nivelDificultad}</td>
+                <td>{j.nivel}</td>
                 <td>{cant_intentos}</td>
                 <td>{validez_prom:.2f}%</td>
                 <td>{tiempo_prom:.2f}</td>
@@ -127,7 +127,7 @@ def generar_reporte_top10(jugadores, tableros, intentos):
     # Filtrar solo intentos válidos al 100%
     intentos_validos = [i for i in intentos if i.es_correcto]
     # Ordenar por tiempo ascendente
-    intentos_ordenados = sorted(intentos_validos, key=lambda x: x.tiempo_Segundos)[:10]
+    intentos_ordenados = sorted(intentos_validos, key=lambda x: x.tiempo_segundos)[:10]
 
     contenido_html = """<!DOCTYPE html>
 <html lang="es">
@@ -160,7 +160,7 @@ def generar_reporte_top10(jugadores, tableros, intentos):
 """
     for pos, i in enumerate(intentos_ordenados, start=1):
         jugador = next((j for j in jugadores if str(j.carnet) == str(i.carnet)), None)
-        tablero = next((t for t in tableros if t.id_Sudoku == i.id_Sudoku), None)
+        tablero = next((t for t in tableros if t.id_sudoku == i.id_sudoku), None)
 
         nombre_jugador = jugador.obtener_nombre_completo() if jugador else "Desconocido"
         dificultad = tablero.dificultad if tablero else "N/A"
@@ -169,9 +169,9 @@ def generar_reporte_top10(jugadores, tableros, intentos):
                 <td><b>#{pos}</b></td>
                 <td>{i.carnet}</td>
                 <td>{nombre_jugador}</td>
-                <td>{i.id_Sudoku}</td>
+                <td>{i.id_sudoku}</td>
                 <td>{dificultad}</td>
-                <td>{i.tiempo_Segundos} s</td>
+                <td>{i.tiempo_segundos} s</td>
             </tr>\n"""
 
     contenido_html += """        </tbody>
